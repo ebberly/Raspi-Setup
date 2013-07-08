@@ -2,9 +2,11 @@
 
 Setup steps for Raspberry Pi
 
-##Steps
+##Initial Setup
 
-###Getting Online
+To begin, you'll need to download the latest Raspberry Pi operating system (OS) from 
+
+##Getting Online
 
 You'll need to update the wpa_supplicant information to get on a wireless connection that uses the WPA security key.
 
@@ -24,3 +26,6 @@ This will output something that looks like
   
 
   
+##Updating Firmware
+
+Following the video [here](https://www.youtube.com/watch?v=Vwrxep7oB24).
