@@ -1,4 +1,4 @@
-#Raspi-Setup
+#Raspberry Pi Setup
 
 Raspberry Pi setup for the Site to Site course taught at the Columbia University Graduate School of Architecture, Planning and Preservation. We will be using the Raspberry Pi with a version of the Linux open source OS called Raspbian in order to connect remote physical spaces through the web.
 
@@ -18,7 +18,7 @@ Once this is done, the card should be ready to power your Raspberry Pi.
 
 ##Initializing the Raspberry Pi
 
-Now you'll begin to interact with the Pi. 
+Now you'll begin to interact with the Pi. The Pi is a mini-computer, but it doesn't come with all of the external 
 
 ####Option 1: External Display and Keyboard
 
