@@ -54,3 +54,10 @@ This will output something that looks like
 ##Updating Firmware
 
 Following the video [here](https://www.youtube.com/watch?v=Vwrxep7oB24).
+
+##Useful Linux Commands
+
+$ top
+$ free -h
+$ ps aux | grep taskname
+$ vncserver -kill :$DISPLAY
