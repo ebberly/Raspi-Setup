@@ -6,7 +6,7 @@ Raspberry Pi setup for the Site to Site course taught at the Columbia University
 
 _Note: Much of this step and the following are also documented [here](http://lifehacker.com/5976912/a-beginners-guide-to-diying-with-the-raspberry-pi), though I had trouble with the SD card formatter, and the config options were different as that tutorial might have been for an earlier release of the Raspbian OS._
 
-The Raspberry Pi uses an SD card (4GB minimum, class 4, 6 or 10; 10 is fastest) as its harddrive, the only source of persistent data storage. It is on the SD card that you will install the operating system (OS) first with your computer, or you can buy an SD card with the OS already loaded (I recommend formatting the SD card your self, both to have a better understanding of how it's working, and to have more control over the version).
+The Raspberry Pi uses an SD card (4GB minimum, class 4, 6 or 10; 10 is fastest) as its hard drive, the only source of persistent data storage. It is on the SD card that you will install the operating system (OS) first with your computer, or you can buy an SD card with the OS already loaded (I recommend formatting the SD card your self, both to have a better understanding of how it's working, and to have more control over the version).
 
 To begin, you'll need to download the latest raw image of the Raspberry Pi hard-float Raspbian "wheezy" OS from the Raspberry Pi site [downloads](http://www.raspberrypi.org/downloads) section.
 
