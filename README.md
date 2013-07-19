@@ -23,23 +23,48 @@ Now you'll begin to interact with the Pi. The Pi is a mini-computer, but it does
 ####Option 1: External Display and Keyboard
 
 
-##Updating and Upgrading Packages (eg. Applications)
+####Option 2: Using a Laptop with an Ethernet Connection
 
-The Raspbian OS image you just loaded onto the SD card is the bare minimum you need to get things going. In this step, you will launch the Pi for the first time, and update and upgrade all of the necessary packages (eg. applications).
+You'll need to make a change to the SD card on your computer before you load it into the Pi. Swap your cmdline.txt file with the one here, and also add cmdline.direct and cmdline.normal to your SD card, then eject it. This will add a static IP address to your Pi, so that when it has booted, you can ssh into the command line through a physical ethernet cable connection in order to set up wi-fi on the Pi.
 
+Insert the SD card and an ethernet cable connected to a laptop and plug in the power supply. Give it a few minutes to boot up, and then open a terminal window and type
 
+	$ ssh pi@169.254.0.2
 
+It will likely prompt you to see if you will accept the RSA key, you should respond yes and press enter. You will then be prompted to type your password which will be
+
+	raspberry
+
+##Configing the Pi
+
+Now you should have the $ command prompt showing. The first thing you want to do is configure your Pi. Do this by typing
+
+	$ sudo raspi-config
+
+First select Expand Filesystem by selecting the option using the arrow keys and pressing enter, then confirm your choice. 
+
+Next, change the user password, which is the password you will use from now on when logging into your Pi with the username pi.
+
+Next, choose Internationalisation Options and set your timezone to America > New_York.
+
+Next, go into advanced options and enable SSH.
+
+Next, go back into advanced options and choose Memory Split, and set the GPU memory to 128.
+
+Finally, add your Pi to Rastrack if you want to be part of the global registry of Raspberry Pis.
+
+Select finish, and choose to reboot the pi. Wait a few moments to try to ssh in again as above. Continue to try the ssh command as long as you get connection timeout errors, this just indicates that the pi is in the process of rebooting and is not ready.
 
 
 ##Getting Online
 
-You'll need to update the wpa_supplicant information to get on a wireless connection that uses the WPA security key.
+Before you can install the necessary packages to work with your pi, you'll need to establish an internet connection. This is achieved through the pre-installed wpa_supplicant package, which you will now configure to work with whichever wireless network you have available to your pi.
 
-First, figure out the psk (an encoded version of your wireless password) by using the wpa_passphrase command
+First, you'll update the wpa_supplicant.conf file in /etc/wpa_supplicant/ by providing an encoded password for your wireless network. Generate this encoded password by doing the following:
 
 	$ wpa_passphrase [ssid] [password]
 
-ssid is the name of the network (eg. Columbia University) and password is your password in plain text.
+where ssid is the name of the network (eg. Columbia University) and password is your password in plain text.
 
 This will output something that looks like
 
@@ -48,9 +73,25 @@ This will output something that looks like
 		#psk="mypasswordinplaintext"
 		psk=19e655769206f1d867e4b338f2f39b06a37c4d2a5265365438fd67d96afea44a
 	}
-  
 
-  
+Copy this entire block of text, and then you will use the native linux/unix text editor, vi, to alter the wpa_supplicant.conf file. In it's default state, it is somewhat difficult to use, so be sure to follow the below steps precisely:
+
+	$ cd /etc/wpa_supplicant
+	$ sudo vi wpa_supplicant.conf
+
+This will bring up the vi text editor. Here, tap the down arrow key twice to move the cursor to the beginning of the second (and last) line. The vi editor has two modes, control and insert. When it launches, it is in control mode, so you will need to get into insert mode before you can paste in the network id and passphrase. To do this, as well as create a new blank line below the current last line, type *o and press enter (that's asterix and a lowercase letter o). Then, hit return to free up another line, and finally press ctrl/command+v (ie. do a paste using the appropriate keyboard combination for a Mac or PC). Then, press the esc key to get back into control mode, and then type :wq and hit enter. This will execute the write (w) command, followed by the quit (q) command. This should return you to the command line $ prompt.
+
+Now you are ready to reboot. First, install your Wi-Pi USB dongle by inserting it into one of the two USB ports on the pi, then type the following at the command line prompt
+
+	$ sudo reboot
+
+Once your pi reboots, you should see the Wi-Pi dongle begin to flash blue.
+
+##Updating and Upgrading Packages (eg. Applications)
+
+The Raspbian OS image you just loaded onto the SD card is the bare minimum you need to get things going. In this step, you will launch the Pi for the first time, and update and upgrade all of the necessary packages (eg. applications).
+
+
 ##Updating Firmware
 
 Following the video [here](https://www.youtube.com/watch?v=Vwrxep7oB24).
