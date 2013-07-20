@@ -134,6 +134,8 @@ Now you'll need to reboot for the changes to take:
 	
 	$ sudo reboot
 
+##Installing and Configuring Vim
+
 ##Installing Node.js
 
 	$ cd ~
@@ -159,8 +161,23 @@ Then, test to see if it installed Node.js and NPM:
 	$ node -v
 	$ npm -v
 
+##Install RaspiCam Camera
 
-##Installing and Configuring Vim
+Update the boot configuration file
+
+	$ cd /boot
+	$ vi config.txt
+
+Add the following to the end of the file:
+
+	start_file=start_x.elf
+	fixup_file=fixup_x.dat
+
+Then, update the raspi-config to include the camera firmware
+
+	$ sudo raspi-config
+
+Select the Enable Camera option and choose enable. It will then ask you if you would like to reboot, choose yes.
 
 ##Useful Linux Commands
 
