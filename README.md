@@ -99,8 +99,8 @@ Next, you'll need to prepare your interfaces file to tell the pi which interface
 
 1.	Open the interfaces file in the vi text editor by typing the following
 	
-	$ cd /etc/network
-	$ sudo vi interfaces
+		$ cd /etc/network
+		$ sudo vi interfaces
 
 2.	Delete every line as you did with wpa_supplicant.conf by typing dd until they are all removed.
 
@@ -123,10 +123,27 @@ The Raspbian OS image you just loaded onto the SD card is the bare minimum you n
 	$ sudo apt-get update
 	$ sudo apt-get upgrade -y
 
+##Installing Git
+
+The Raspbian linux distribution comes with the apt-get package manager already installed. Since we'll be doing much with open source projects hosted on github, we'll want to install git as well. We'll use apt-get to do this:
+
+	$ sudo apt-get install git-core -y
+
 
 ##Updating Firmware
 
-Following the video [here](https://www.youtube.com/watch?v=Vwrxep7oB24).
+Now, we want to update the Pi firmware using an open source updater created by github user Hexxeh (note: this may take a few minutes):
+
+	$ sudo apt-get install rpi-update
+	$ sudo rpi-update
+
+
+
+##Installing and Configuring Vim
+
+##Installing Node.js
+
+##Installing NPM
 
 ##Useful Linux Commands
 
