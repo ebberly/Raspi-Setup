@@ -134,9 +134,6 @@ Now you'll need to reboot for the changes to take:
 	
 	$ sudo reboot
 
-
-##Installing and Configuring Vim
-
 ##Installing Node.js
 
 	$ cd ~
@@ -163,9 +160,7 @@ Then, test to see if it installed Node.js and NPM:
 	$ npm -v
 
 
-
-
-##Installing NPM
+##Installing and Configuring Vim
 
 ##Useful Linux Commands
 
