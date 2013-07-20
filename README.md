@@ -18,13 +18,6 @@ Once this is done, the card should be ready to power your Raspberry Pi.
 
 ##Initializing the Raspberry Pi
 
-Now you'll begin to interact with the Pi. The Pi is a mini-computer, but it doesn't come with all of the external 
-
-####Option 1: External Display and Keyboard
-
-
-####Option 2: Using a Laptop with an Ethernet Connection
-
 You'll need to make a change to the SD card on your computer before you load it into the Pi. Swap your cmdline.txt file with the one here, and also add cmdline.direct and cmdline.normal to your SD card, then eject it. This will add a static IP address to your Pi, so that when it has booted, you can ssh into the command line through a physical ethernet cable connection in order to set up wi-fi on the Pi.
 
 Insert the SD card and an ethernet cable connected to a laptop and plug in the power supply. Give it a few minutes to boot up, and then open a terminal window and type
@@ -137,17 +130,46 @@ Now, we want to update the Pi firmware using an open source updater created by g
 	$ sudo apt-get install rpi-update
 	$ sudo rpi-update
 
+Now you'll need to reboot for the changes to take:
+	
+	$ sudo reboot
 
 
 ##Installing and Configuring Vim
 
 ##Installing Node.js
 
+	$ cd ~
+	$ wget http://nodejs.org/dist/v0.10.13/node-v0.10.13-linux-arm-pi.tar.gz
+	$ tar xvzf node-v0.10.13-linux-arm-pi.tar.gz
+	$ rm node-v0.10.13-linux-arm-pi.tar.gz
+	$ sudo mkdir /opt/node
+	$ sudo cp -r node-v0.10.13-linux-arm-pi/* /opt/node
+	$ rm -r node-v0.10.13-linux-arm-pi/
+	$ vi .bash_profile
+
+Add these two lines to your .bash_profile:
+
+	PATH=$PATH:/opt/node/bin
+	export PATH
+
+Source the .bash_profile file to apply the changes
+
+	$ source .bash_profile
+
+Then, test to see if it installed Node.js and NPM:
+	
+	$ node -v
+	$ npm -v
+
+
+
+
 ##Installing NPM
 
 ##Useful Linux Commands
 
-$ top
-$ free -h
-$ ps aux | grep taskname
-$ vncserver -kill :$DISPLAY
+	$ top
+	$ free -h
+	$ ps aux | grep taskname
+	$ vncserver -kill :$DISPLAY
