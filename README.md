@@ -60,26 +60,55 @@ Select finish, and choose to reboot the pi. Wait a few moments to try to ssh in 
 
 Before you can install the necessary packages to work with your pi, you'll need to establish an internet connection. This is achieved through the pre-installed wpa_supplicant package, which you will now configure to work with whichever wireless network you have available to your pi.
 
-First, you'll update the wpa_supplicant.conf file in /etc/wpa_supplicant/ by providing an encoded password for your wireless network. Generate this encoded password by doing the following:
+First, you'll update the wpa_supplicant.conf file in /etc/wpa_supplicant/ which will store the information about which wireless networks you want your Pi to be able to connect to on startup. We will have to use the default vi text editor, which is difficult to use, so you will build the text files you need in a text editor on your computer and then paste them into vi.
 
-	$ wpa_passphrase [ssid] [password]
+Depending on whether your network requires a password, or is open (like the Columbia University network), you will follow a different set of instructions. For a network that requires a password, do the following:
 
-where ssid is the name of the network (eg. Columbia University) and password is your password in plain text.
+1.	Open the wpa_supplicant.conf file from this repository in a code friendly text editor on your computer ( Textedit on a Mac, Notepad on a PC, or Sublime Text 2 on either is best; do not use Word).
 
-This will output something that looks like
+2.	Back at the Pi command prompt, generate this encoded password by typing the following where ssid is the name of the network (eg. Columbia University) and password is your password in plain text.
 
-	network={
-		ssid="mynetwork"
-		#psk="mypasswordinplaintext"
-		psk=19e655769206f1d867e4b338f2f39b06a37c4d2a5265365438fd67d96afea44a
-	}
+		$ wpa_passphrase [ssid] [password]
 
-Copy this entire block of text, and then you will use the native linux/unix text editor, vi, to alter the wpa_supplicant.conf file. In it's default state, it is somewhat difficult to use, so be sure to follow the below steps precisely:
+3.	The output will look something like this:
 
-	$ cd /etc/wpa_supplicant
-	$ sudo vi wpa_supplicant.conf
+		network={
+			ssid="mynetwork"
+			#psk="mypasswordinplaintext"
+			psk=19e655769206f1d867e4b338f2f39b06a37c4d2a5265365438fd67d96afea44a
+		}
 
-This will bring up the vi text editor. Here, tap the down arrow key twice to move the cursor to the beginning of the second (and last) line. The vi editor has two modes, control and insert. When it launches, it is in control mode, so you will need to get into insert mode before you can paste in the network id and passphrase. To do this, as well as create a new blank line below the current last line, type *o and press enter (that's asterix and a lowercase letter o). Then, hit return to free up another line, and finally press ctrl/command+v (ie. do a paste using the appropriate keyboard combination for a Mac or PC). Then, press the esc key to get back into control mode, and then type :wq and hit enter. This will execute the write (w) command, followed by the quit (q) command. This should return you to the command line $ prompt.
+4.	In your local text editor, delete the first network declaration block (everything from network= to the second curly brace), and change the ssid and psk values of the second network declaration block to match those you just generated using the Pi command prompt (note the ssid value is enclosed in quotes and the psk value is not).
+
+5.	Back at the Pi command prompt, open the wpa_supplicant.conf file using vi by typing the following:
+
+		$ cd /etc/wpa_supplicant
+		$ sudo vi wpa_supplicant.conf
+
+6.	This will bring up the vi text editor. This editor by default is difficult to navigate, so you will delete everything in the file in order to paste in the text from your local text editor. Vi is controlled by the keyboard, so it has a command mode and an insert mode. It loads in the command mode, so you can delete each line in the file successively by typing dd. Type dd multiple times until you have deleted every line.
+
+7.	Typing the letter i will put you in insert mode, though it can sometimes be sticky, so press the letter i until a letter i is written to the vi text editor window. When it is, hit the backspace key to delete it.
+
+8.	Now you are in insert mode and can paste. Copy all of the text in the wpa_supplicant.conf file you prepared on your local text editor. Back in the vi text editor, press the appropriate ctrl/cmd+v paste command for your computer (Windows or Mac). This should paste the entire text into vi.
+
+9.	Press the ESC button to enter into command mode, and then type :wq and press enter. This will run the write (w) command to save the file, and the quit (q) command to close vi. This should return you to the pi command prompt. If so, your wpa_supplicant.conf file is ready.
+
+If your network does not require a password, follow the above steps skipping #2 and #3, and instead of deleting the first network declaration block in #4, delete the second and alter the first with your ssid.
+
+Next, you'll need to prepare your interfaces file to tell the pi which interfaces to external networks it should support and how.
+
+1.	Open the interfaces file in the vi text editor by typing the following
+	
+	$ cd /etc/network
+	$ sudo vi interfaces
+
+2.	Delete every line as you did with wpa_supplicant.conf by typing dd until they are all removed.
+
+3.	Open the interfaces file from this github repository in a local text editor as you did above with wpa_supplicant.conf and copy all of the text.
+
+4.	As you did above, type the letter i until one appears on the screen, then delete it and paste in the text you just copied using ctrl/cmd+v.
+
+5.	Type ESC followed by :wq to save the file and quit vi.
 
 Now you are ready to reboot. First, install your Wi-Pi USB dongle by inserting it into one of the two USB ports on the pi, then type the following at the command line prompt
 
@@ -90,6 +119,9 @@ Once your pi reboots, you should see the Wi-Pi dongle begin to flash blue.
 ##Updating and Upgrading Packages (eg. Applications)
 
 The Raspbian OS image you just loaded onto the SD card is the bare minimum you need to get things going. In this step, you will launch the Pi for the first time, and update and upgrade all of the necessary packages (eg. applications).
+
+	$ sudo apt-get update
+	$ sudo apt-get upgrade -y
 
 
 ##Updating Firmware
