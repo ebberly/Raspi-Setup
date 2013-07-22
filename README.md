@@ -122,6 +122,11 @@ The Raspbian linux distribution comes with the apt-get package manager already i
 
 	$ sudo apt-get install git-core -y
 
+Now you need to configure git to run with your personal account
+
+	$ git config --global user.email "you@example.com"
+  	$ git config --global user.name "Your Name"
+
 
 ##Updating Firmware
 
@@ -134,7 +139,28 @@ Now you'll need to reboot for the changes to take:
 	
 	$ sudo reboot
 
+##Reconfiguring SSH
+
+SSH will be installed, but you'll want to generate unique public/private keys as your current keys will be available to anyone who downloads the same Raspbian image as you. Run the following.
+
+	$ sudo rm /etc/ssh/ssh_host_* && sudo dpkg-reconfigure openssh-server
+
 ##Installing and Configuring Vim
+
+#Set up Bash Shell Alias
+
+	$ cd ~
+	$ vi .bash_profile
+
+Add the following to the end of the file
+
+	alias ll="ls -laH --color"
+
+Save the file and then source it by doing the following
+
+	$ source .bash_profile
+
+Now you can use ll in place of ls to get more information in your listings.
 
 ##Installing Node.js
 
@@ -178,6 +204,20 @@ Then, update the raspi-config to include the camera firmware
 	$ sudo raspi-config
 
 Select the Enable Camera option and choose enable. It will then ask you if you would like to reboot, choose yes.
+
+##Cloning Tutorials from Github
+
+Make a tutorials directory
+
+	$ cd ~
+	$ mkdir tutorials
+
+Clone a tutorial into that repository
+
+	$ cd tutorials
+	$ git clone https://github.com/troyth/RaspiCam-Tutorial-1.git
+
+
 
 ##Useful Linux Commands
 
