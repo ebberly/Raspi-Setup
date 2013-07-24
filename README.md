@@ -157,6 +157,28 @@ SSH will be installed, but you'll want to generate unique public/private keys as
 
 ##Installing and Configuring Vim
 
+Vim is a more fully featured version of the Vi text editor. To install it, run the following
+
+	$ sudo apt-get install vim
+
+To configure it, create a file called .vimrc in your root user directory by typing
+
+	$ cd ~
+	$ vi .vimrc
+
+Into this file, paste all of the contents of the vimrc file in this Github repository.
+
+Now, install the Molokai color theme by doing the following:
+
+	$ cd ~
+	$ mkdir .vim
+	$ cd .vim
+	$ mkdir colors
+	$ cd colors
+	$ vi molokai.vim
+
+Into this file, paste all of the contents of the molokai.vim file in the colors/ directory in this Github repository.
+
 ##Set up Bash Shell Alias
 
 	$ cd ~
