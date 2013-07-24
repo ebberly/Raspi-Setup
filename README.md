@@ -16,6 +16,16 @@ The SD formatter program will guide you through the process. Be patient, it may 
 
 Once this is done, the card should be ready to power your Raspberry Pi.
 
+If you are using PiWriter, follow these steps:
+
+1.	Uncompress your Raspbian OS image and make sure none of the directories in its file path have spaces or other strange characters in their names (perhaps put it on the desktop)
+2.	Insert your blank SD card into your computer and wait for it to mount
+3.	Open Piwriter-as-Admin program (follow the instructions with PiWriter to create this program)
+4.	Select your Rasbian OS image (an .img file)
+5.	When prompted, eject your SD card and physically remove it from the slot, then press OK
+6.	When prompted, physically reinsert your SD card into the slot, then press OK
+7.	Confirm the port, press OK and wait, it may take a few moments
+
 ##Initializing the Raspberry Pi
 
 You'll need to make a change to the SD card on your computer before you load it into the Pi. Swap your cmdline.txt file with the one here, and also add cmdline.direct and cmdline.normal to your SD card, then eject it. This will add a static IP address to your Pi, so that when it has booted, you can ssh into the command line through a physical ethernet cable connection in order to set up wi-fi on the Pi.
@@ -147,7 +157,7 @@ SSH will be installed, but you'll want to generate unique public/private keys as
 
 ##Installing and Configuring Vim
 
-#Set up Bash Shell Alias
+##Set up Bash Shell Alias
 
 	$ cd ~
 	$ vi .bash_profile
@@ -192,7 +202,7 @@ Then, test to see if it installed Node.js and NPM:
 Update the boot configuration file
 
 	$ cd /boot
-	$ vi config.txt
+	$ sudo vi config.txt
 
 Add the following to the end of the file:
 
